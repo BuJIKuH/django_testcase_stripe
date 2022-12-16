@@ -1,0 +1,14 @@
+<!--orders-->
+{% block content %}
+<input type=button value="Назад" onClick="javascript:history.go(-1);">
+<h1>{{item}}</h1>
+<p>{{item.price}} RUB</p>
+<form action="/add-to-cart" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <p></p>
+    <button type="submit"
+            value='{{item.id}}'
+            name='added-item-id'>В корзину</button>
+</form>
+{% endblock content%}

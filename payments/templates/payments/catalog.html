@@ -1,0 +1,21 @@
+<!--catalog-->
+{% block content %}
+<h1>Каталог</h1>
+{% for item in items %}
+    <a href="{% url 'item' item.id%}">{{item}}</a>
+    <br>Цена: {{item.price}} RUB
+    <form action="/add-to-cart" method="POST">
+    {% csrf_token %}
+    {{form.as_table}}
+    <button type="submit"
+        value={{item.id}}
+        name='added-item-id' >Добавить в корзину
+    </button>
+    </form>
+{% endfor %}
+
+<form action="checkout" method="GET">
+    <button type="submit">К заказу</button>
+</form>
+
+{% endblock content%}
